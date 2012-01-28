@@ -79,4 +79,8 @@ ptx_3k_increase_cdf <- ecdf(pghre_3k$ptx_increase)
 print("percentage of properties (>= $3K) that will have lower taxes:")
 ptx_3k_increase_cdf(0)  # --> 0.57
 
-
+## Method 3:  Use revenue-neutral adjustment factor of 1/1.58
+adj_158 <- anti_windfall_scale_factor * 1.58
+ptx_3k_158_increase_cdf <- ecdf((pghre_3k$ptx_increase + 1) / adj_158 - 1)
+print("%age of properties (>= $3K) that will have lower taxes (1.58 adj.):")
+ptx_3k_158_increase_cdf(0)  # --> 0.64
